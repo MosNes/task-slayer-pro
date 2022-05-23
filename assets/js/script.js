@@ -1,5 +1,7 @@
+//initial empty object to hold tasks
 var tasks = {};
 
+//Constructs a task. pass in the text, date, and which list the task belongs
 var createTask = function(taskText, taskDate, taskList) {
   // create elements that make up a task item
   var taskLi = $("<li>").addClass("list-group-item");
@@ -18,6 +20,7 @@ var createTask = function(taskText, taskDate, taskList) {
   $("#list-" + taskList).append(taskLi);
 };
 
+//loads existing tasks objects from local storage
 var loadTasks = function() {
   tasks = JSON.parse(localStorage.getItem("tasks"));
 
@@ -31,26 +34,27 @@ var loadTasks = function() {
     };
   }
 
-  // loop over object properties
+  // loop over object properties. list = the name of the task list (e.g. toDo, inProgress, etc). arr = the array of task objects contained in that list
   $.each(tasks, function(list, arr) {
     console.log(list, arr);
-    // then loop over sub-array
+    // then loop over sub-array, the task object containing the text, date, and list value
     arr.forEach(function(task) {
       createTask(task.text, task.date, list);
     });
   });
 };
 
+//saves the current tasks array to localStorage
 var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 
 
-
+// modal refers to the item displayed when the Add Task button is clicked
 // modal was triggered
 $("#task-form-modal").on("show.bs.modal", function() {
-  // clear values
+  // clear values from the input fields when the modal is first shown to user
   $("#modalTaskDescription, #modalDueDate").val("");
 });
 
@@ -66,6 +70,7 @@ $("#task-form-modal .btn-primary").click(function() {
   var taskText = $("#modalTaskDescription").val();
   var taskDate = $("#modalDueDate").val();
 
+  // basic validation, if text is present in both inputs, then run the createTask function
   if (taskText && taskDate) {
     createTask(taskText, taskDate, "toDo");
 
@@ -78,6 +83,7 @@ $("#task-form-modal .btn-primary").click(function() {
       date: taskDate
     });
 
+    //updates localStorage with new tasks
     saveTasks();
   }
 });
@@ -88,6 +94,7 @@ $("#remove-tasks").on("click", function() {
     tasks[key].length = 0;
     $("#list-" + key).empty();
   }
+  //updates local storage with new empty task arrays
   saveTasks();
 });
 
