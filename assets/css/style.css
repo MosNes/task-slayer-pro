@@ -1,3 +1,11 @@
+:root {
+  --slayer-red: rgba(216, 4, 43, 1);
+}
+
+.slayer-red {
+  color: var(--slayer-red);
+}
+
 ul.list-group {
   min-height: 130px;
 }
