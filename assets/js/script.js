@@ -115,6 +115,62 @@ $(".list-group").on("blur", "textarea", function () {
 
 });
 
+//listener for editing due dates on tasks
+$(".list-group").on("click", "span", function () {
+  //get current text
+  var date = $(this)
+    .text()
+    .trim();
+
+  //create new input element
+  var dateInput = $("<input>")
+    //define the type of input element
+    // .attr with 1 argument gets the attribute, with 2 args, it sets the attribute
+    .attr("type", "text")
+    .addClass("form-control")
+    .val(date);
+
+  //swap out elements
+  $(this).replaceWith(dateInput);
+
+  //auto focus on new input element
+  dateInput.trigger("focus");
+
+});
+
+//listener for when date gets "blurred"
+$(".list-group").on("blur", "input[type='text']", function () {
+
+  //get current text from input
+  var date = $(this)
+    //use val for inputs instead of text
+    .val()
+    .trim();
+
+  //get the parent ul's id attribute
+  var status = $(this)
+    .closest(".list-group")
+    .attr("id")
+    .replace("list-", "");
+
+  //get the index of the parent li element
+  var index = $(this)
+    .closest(".list-group-item")
+    .index();
+
+  //update task in array and re-save to localstorage
+  tasks[status][index].date = date;
+  saveTasks();
+
+  //recreate span element
+  var taskSpan = $("<span>")
+  .addClass("badge badge-primary badge-pill")
+  .text(date);
+
+  //replace input with span
+  $(this).replaceWith(taskSpan);
+});
+
 
 
 
