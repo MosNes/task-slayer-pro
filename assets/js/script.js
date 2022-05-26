@@ -56,21 +56,52 @@ $(".card .list-group").sortable({
   tolerance: "pointer",
   helper: "clone",
   activate: function(event) {
-    console.log("activate", this);
+    // console.log("activate", this);
   },
   deactivate: function(event) {
-    console.log("deactivate", this);
+    // console.log("deactivate", this);
   },
   over: function(event) {
-    console.log("over", this);
+    // console.log("over", this);
   },
   out: function(event) {
-    console.log("out", this);
+    // console.log("out", this);
   },
   update: function(event) {
-    console.log("update",this);
-    }
+    //array to store task data
+    var tempArr = [];
+
+    $(this).children().each(function() {
+      var text = $(this)
+      .find("p")
+      .text()
+      .trim();
+
+      var date = $(this)
+      .find("span")
+      .text()
+      .trim();
+
+      // add task data to array as an object
+      tempArr.push({
+        text: text,
+        date: date
+      });
+    });
+
+    //get id of list element
+    var arrName = $(this)
+      .attr("id")
+      .replace("list-","")
+
+    console.log("Array Name",arrName);
+    console.log("Temp Array",tempArr);
+    
+    tasks[arrName] = tempArr;
+    saveTasks();
+  }
   });
+
 //click listener for event description <p> elements. Added to all elements with the .list-group class, so it can monitor for clicks in <p> elements inside 
 //the list columns as the <p> elements are created
 $(".list-group").on("click", "p", function () {
@@ -105,6 +136,7 @@ $(".list-group").on("blur", "textarea", function () {
   var text = $(this)
     .val()
     .trim();
+    
 
   //get the parent ul's id attribute and edit it to get a string that matches one of the four task array property names (toDo, inProgress, inReview, done)
   var status = $(this)
@@ -114,6 +146,7 @@ $(".list-group").on("blur", "textarea", function () {
     .attr("id")
     // removes "list-" from the id string, leaving only the last portion (e.g. "toDo")
     .replace("list-", "");
+    
 
   //get the task's position in the list of other li elements
   var index = $(this)
