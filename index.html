@@ -11,75 +11,66 @@
 </head>
 
 <body>
-
   <div class="row min-vh-100 no-gutters">
-    <header class="col-12 col-lg-3 bg-dark text-light d-flex flex-column p-4 p-lg-3">
+    <header class="col-12 col-lg-3 bg-dark text-light sticky-top d-flex flex-column p-4 p-lg-3">
       <h1 class="text-center">Task<span class="slayer-red">Slayer</span> Pro</h1>
       <button id="create-task" class="btn btn-block btn-success" data-toggle="modal" data-target="#task-form-modal">Add
         Task</button>
       <button id="remove-tasks" class="btn btn-block btn-danger">Delete All Tasks</button>
-      <p class="mt-auto">Bro ipsum dolor sit amet yard sale carve T-bar backside bro white room sucker hole pow. Avie face plant bunny slope booter, park twin tip first tracks. Huckfest frozen chicken heads betty gondy bonk DH saddle whip.
-      </p>
+        <p class="mt-auto d-none d-lg-block">Bro ipsum dolor sit amet yard sale carve T-bar backside bro white room
+          sucker
+          hole pow. Avie face plant bunny slope booter, park twin tip first tracks. Huckfest frozen chicken heads betty
+          gondy bonk DH saddle whip.
+        </p>
     </header>
-    <main class="col-12 col-lg-9">
+    <main class="col-12 col-lg-9 d-flex flex-column">
       <div class="m-5 row justify-content-around">
-      <!-- ToDo Start -->
+        <!-- ToDo Start -->
         <div class="col-12 col-md-6 col-xl-3 mb-3">
           <div class="card">
-            <h4 class="card-header">To Do</h4>
+            <h4 class="card-header bg-dark text-light">To Do</h4>
             <ul id="list-toDo" class="list-group list-group-flush">
-              <li class="list-group-item">
-                <span class="badge badge-primary badge-pill">05/28/2020</span>
-                <p class="m-1">Sample task to do</p>
-              </li>
+
             </ul>
           </div>
         </div>
         <!-- ToDo end -->
         <!-- In Progress Start -->
-        
-          <div class="col-12 col-md-6 col-xl-3 mb-3">
-            <div class="card">
-              <h4 class="card-header">In Progress</h4>
-              <ul id="list-inProgress" class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <span class="badge badge-primary badge-pill">05/28/2020</span>
-                  <p class="m-1">Sample task to do</p>
-                </li>
-              </ul>
-            </div>
+        <div class="col-12 col-md-6 col-xl-3 mb-3">
+          <div class="card">
+            <h4 class="card-header bg-dark text-light">In Progress</h4>
+            <ul id="list-inProgress" class="list-group list-group-flush">
+
+            </ul>
           </div>
+        </div>
         <!-- In Progress End -->
         <!-- In Review start -->
-        
-          <div class="col-12 col-md-6 col-xl-3 mb-3">
-            <div class="card">
-              <h4 class="card-header">In Review</h4>
-              <ul id="list-inReview" class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <span class="badge badge-primary badge-pill">05/28/2020</span>
-                  <p class="m-1">Sample task to do</p>
-                </li>
-              </ul>
-            </div>
+        <div class="col-12 col-md-6 col-xl-3 mb-3">
+          <div class="card">
+            <h4 class="card-header bg-dark text-light'">In Review</h4>
+            <ul id="list-inReview" class="list-group list-group-flush">
+
+            </ul>
           </div>
+        </div>
         <!-- In Review End -->
         <!-- Done start -->
         <div class="col-12 col-md-6 col-xl-3 mb-3">
-            <div class="card">
-              <h4 class="card-header">Done</h4>
-              <ul id="list-done" class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <span class="badge badge-primary badge-pill">05/28/2020</span>
-                  <p class="m-1">Sample task to do</p>
-                </li>
-              </ul>
-            </div>
+          <div class="card">
+            <h4 class="card-header bg-dark text-light'">Done</h4>
+            <ul id="list-done" class="list-group list-group-flush"></ul>
           </div>
+        </div>
         <!-- Done End -->
       </div>
+      <div id="trash" class="mt-auto">
+        <div class="w-100 bg-danger p-3 text-center text-light display-4">
+          Drop Here to Remove
+        </div>
+      </div>
     </main>
-    </div>
+  </div>
 
   <!-- Modal -->
   <div class="modal fade" id="task-form-modal" tabindex="-1" role="dialog" aria-labelledby="task-form-modal"
