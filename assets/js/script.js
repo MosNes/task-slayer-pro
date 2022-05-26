@@ -232,6 +232,7 @@ $(".list-group").on("blur", "input[type='text']", function () {
 //handler for the drag and drop to trash functionality
 
 //selects the div with the trash id and turns it into a "droppable" event listener
+//drag and drop does not work on mobile without a library. In this case we're using the touch punch library for jQuery UI
 $("#trash").droppable({
   //object containing the params for how the droppable element functions
   //accept defines what sort of draggables the dropbox will accept as valid input
