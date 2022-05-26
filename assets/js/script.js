@@ -48,6 +48,29 @@ var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+// makes the card items in the list columns sortable
+// connectWith property connects the initial element with another element, in this case all of the list-groups and cards are connected for the sorting functionality
+$(".card .list-group").sortable({
+  connectWith: $(".card .list-group"),
+  scroll: false,
+  tolerance: "pointer",
+  helper: "clone",
+  activate: function(event) {
+    console.log("activate", this);
+  },
+  deactivate: function(event) {
+    console.log("deactivate", this);
+  },
+  over: function(event) {
+    console.log("over", this);
+  },
+  out: function(event) {
+    console.log("out", this);
+  },
+  update: function(event) {
+    console.log("update",this);
+    }
+  });
 //click listener for event description <p> elements. Added to all elements with the .list-group class, so it can monitor for clicks in <p> elements inside 
 //the list columns as the <p> elements are created
 $(".list-group").on("click", "p", function () {
