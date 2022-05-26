@@ -94,10 +94,12 @@ $(".card .list-group").sortable({
       .attr("id")
       .replace("list-","")
 
-    console.log("Array Name",arrName);
-    console.log("Temp Array",tempArr);
+    // console.log("Array Name",arrName);
+    // console.log("Temp Array",tempArr);
     
+    //update tasks array with new array definining which elements belong to which lists
     tasks[arrName] = tempArr;
+    //saves the tasks array to localStorage
     saveTasks();
   }
   });
@@ -227,7 +229,30 @@ $(".list-group").on("blur", "input[type='text']", function () {
   $(this).replaceWith(taskSpan);
 });
 
+//handler for the drag and drop to trash functionality
 
+//selects the div with the trash id and turns it into a "droppable" event listener
+$("#trash").droppable({
+  //object containing the params for how the droppable element functions
+  //accept defines what sort of draggables the dropbox will accept as valid input
+  accept: ".card .list-group-item",
+  //tolerance defines how much of the draggable needs to be inside the dropbox before it accepts the input
+  //touch means that the element just needs to touch any part of the dropbox instead of be completely inside of it
+  tolerance: "touch",
+  //drop defines what happens when you drop a draggable into the dropbox, it accepts 2 args, event and ui. UI includes info on the draggable.
+  drop: function(event, ui){
+    //the remove function triggers the update method of the sortable list, so we don't have to call saveTasks() again here
+    ui.draggable.remove();
+  },
+  //over defines what happens when you hover a draggable over the box
+  over: function(event, ui){
+    
+  },
+  //out defines what happens when you drag a draggable out of the dropbox
+  out: function(event,ui){
+    
+  }
+});
 
 
 // "A modal (sometimes called a pop-up) is an overlay that requires user interaction before returning to the main application"
